@@ -1,5 +1,7 @@
 
-import { Btn, Nav } from '@/Components'
+import { Btn, Footer, Nav } from '@/Components'
+import { Head } from '@inertiajs/react';
+import { Facebook, Linkedin, Mail, Phone } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react'
 
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -63,7 +65,8 @@ const DotsOverlay = ({ numDots = 10 }) => {
     );
 };
 
-const Home = () => {
+const Home = ({ user }) => {
+
     const cards = [
         {
             title: "It's Free",
@@ -89,13 +92,14 @@ const Home = () => {
 
     return (
         <div>
-            <Nav />
+            <Head title="Home" />
+            <Nav user={user} />
 
             <header className="relative bg-blue-50 bg-opacity-30 z-0">
                 <div className=" relative z-10  bg-opacity-80 content-spacing">
                     <div className="left h-[500px] flex flex-col items-center justify-center max-w-[800px] mx-auto text-center">
                         <div className="short-text"></div>
-                        <div className="large-text text-5xl font-bold capitalize leading-tight ">
+                        <div className="large-text text-5xl max-[800px]:text-4xl font-bold capitalize leading-tight ">
                             stop all trackers and ads and <span className="text-blue-600">earn more from</span> your <span className="text-blue-600">browsing</span>
                         </div>
                         <p className="max-w-[480px] mx-auto text-sm my-3">
@@ -115,19 +119,19 @@ const Home = () => {
 
             </header>
 
-            <div className="relative  ">
-                <div className="relative z-10 h-[500px] w-[700px] mx-auto bg-white overflow-hidden rounded-3xl -mt-24">
-                    <img src="/images/dashboard.png" className="h-full w-full object-cover" />
+            <div className="relative  max-[550px]:hidden">
+                <div className="relative z-10 h-[500px] w-[700px] max-[770px]:max-w-[500px] mx-auto bg-white overflow-hidden rounded-3xl -mt-24">
+                    <img src="/images/dashboard.png" className="h-full w-full object-cover max-[770px]:object-contain" />
                 </div>
                 {/* <div className="wave absolute top-0 left-0 h-full w-full from-transparent to-blue-600  bg-gradient-to-b"></div> */}
             </div>
 
-            <div className="h-24"></div>
+            <div className="y-gap"></div>
 
-            <div className="min-h-[250px]">
-                <div className="grid grid-cols-12 gap-3 content-spacing">
-                    {cards.map( ({title, imgSrc, content}) => 
-                        <div className="col-span-3  bg-blue-50 p-6 rounded-2xl">
+            <div className=" flex items-center">
+                <div className="grid grid-cols-12 max-[990px]:grid-cols-6 max-[500px]:grid-cols-3 gap-3 content-spacing">
+                    {cards.map(({ title, imgSrc, content }) =>
+                        <div key={title} className="col-span-3  bg-blue-50 p-6 rounded-2xl">
                             <div className="top flex items-center justify-between relative">
                                 <div className="font-bold text-2xl text-blue-700">{title}</div>
                                 <div className="image h-[100px] w-[100px] absolute -top-20 -right-8">
@@ -140,18 +144,21 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className=" my-24 content-spacing">
-                <div className="grid grid-cols-2 bg-gray-50 min-h-[400px] rounded-3xl">
-                    <div className="left h-[600px] w-[600px] relative -my-64">
+            <div className="y-gap"></div>
+            <div className="y-gap"></div>
+
+            <div className=" content-spacing max-[990px]:pl-0 max-[750px]:px-12 max-[500px]:px-0">
+                <div className="grid grid-cols-2 max-[750px]:block gap-6 bg-gray-50 max-[750px]:bg-white min-h-[400px] rounded-3xl">
+                    <div className="left h-[600px] w-[500px] max-[990px]:w-[400px] max-[500px]:w-[300px] relative -mt-64 mx-auto">
                         <img src="/images/user.png" className="h-full w-full object-contain relative z-10" />
                         <div className="bg-blue-200 rounded-3xl absolute w-[70%] h-[300px] bottom-0 left-1/2 transform -translate-x-1/2 z-0"></div>
                     </div>
-                    <div className="right flex flex-col justify-center">
-                        <div className="font-bold text-6xl">
-                        <span className="text-blue-600">Earn</span> points <span className="text-blue-600">daily</span> when you view ads
+                    <div className="right flex flex-col justify-center max-[500px]:px-6">
+                        <div className="font-bold text-6xl max-[1000px]:text-4xl max-[750px]:mt-6">
+                            <span className="text-blue-600">Earn</span> points <span className="text-blue-600">daily</span> when you view ads
                         </div>
                         <p className="my-3">
-                        Discover a revolutionary browsing experience that rewards you for doing what you love - surfing the web! Earn points daily just for viewing ads, and redeem them for the things you want from our exclusive marketplace.
+                            Discover a revolutionary browsing experience that rewards you for doing what you love - surfing the web! Earn points daily just for viewing ads, and redeem them for the things you want from our exclusive marketplace.
                         </p>
 
                         <Btn.Md extra={'w-[180px]'}>Get Started</Btn.Md>
@@ -160,26 +167,35 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className=" content-spacing ">
-                <div className="grid grid-cols-2">
-                    <div className="left flex flex-col justify-center">
-                        <div className="font-bold text-6xl">
-                            <span className="text-blue-600">Earn</span> points <span className="text-blue-600">daily</span> when you view ads
+            <div className="y-gap"></div>
+
+            <div className=" content-spacing max-[750px]:px-12 max-[500px]:px-6">
+                <div className="grid grid-cols-2 max-[750px]:grid-cols-1 gap-">
+                    <div className="left flex flex-col justify-center pl-12 max-[750px]:pl-0">
+                        <div className="font-bold text-6xl max-[1000px]:text-4xl">
+                            Take Your <span className="text-blue-600">Business</span> to the Next <span className="text-blue-600">Level</span>
                         </div>
-                        <p className="my-3">
+                        <p className="my-3 max-[1000px]:text-sm">
                             Begin advertisement with as little as GHS 1.00. Connect with over 100,000 buyers and marketers. Buy, advertise, and sell products. Experience business growth with myAdmo.
                         </p>
-                        <p className="my-3">
+                        <p className="my-3 max-[1000px]:text-sm">
                             We focus on user experience and promote advertising from a business point of view. We are giving users the chance to experience internet surfing like never before.
                         </p>
                         <Btn.Md extra={'w-[180px]'}>Get Started</Btn.Md>
                     </div>
-                    <div className="right"></div>
+                    <div className="right bg-red-00 row-start-1">
+                        <img src="/images/megaphone.png" className="object-contain h-full w-full" />
+                    </div>
                 </div>
             </div>
+
+            <div className="y-gap"></div>
+
+
+            <Footer />
 
         </div>
     )
 }
 
-export default Home
+export default Home;

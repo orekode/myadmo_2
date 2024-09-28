@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 
+* {
+  box-sizing: border-box;
+  transition: .3s;
+}
+
+a:focus,
+a:hover,
+a:active {
+  text-decoration: none !important;
+}
+
 body {
     color: #111;
     font-family: "DM Sans", sans-serif;
@@ -27,5 +38,88 @@ body {
 }
 
 .content-spacing {
-    @apply max-w-[1240px] mx-auto px-12
+    @apply max-w-[1240px] mx-auto px-12 max-[600px]:px-6
+}
+
+.y-gap {
+  @apply h-24
+}
+
+.grid-box-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.grid-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(236px, 1fr));
+}
+
+.grid-box-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.grid-box-flat {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(436px, 1fr));
+}
+
+.dashboard {
+  --size: 258px;
+  display:flex;
+  height: calc(100vh - 55px);
+}
+
+.dashboard > .left {
+  width: var(--size);
+}
+
+.dashboard > .right {
+  width: calc( 100vw - var(--size) );
+}
+
+.remove-all-sub-borders  * {
+  border: none;
+  box-shadow: none !important;
+  @apply focus:shadow-none;
+}
+
+.remove-all-sub-borders > div {
+  padding: 0;
+  @apply flex items-center;
+}
+
+@media only screen and (max-width: 900px) {
+  .dashboard > .right {
+    width: 100vw;
+  }
+}
+
+
+@layer components {
+  .font-reduce {
+    font-size: 80%;
+  }
+
+
+
+  .extend-screen {
+    --i: 320px;
+    width: calc(100vw + var(--i));
+  }
+
+  .extend-screen .extended {
+    width: var(--i);
+  }
+
+  @media only screen and (max-width: 420px) {
+    .extend-screen {
+      width: calc(100vw * 2);
+    }
+
+    .extended {
+      --i: 100vw;
+    }
+  }
 }

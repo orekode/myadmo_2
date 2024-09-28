@@ -34,6 +34,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'currency' => 'Ghc',
+            'payment_currency' => 'GHS'
         ];
     }
 }
